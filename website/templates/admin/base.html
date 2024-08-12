@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+     crossorigin="anonymous" 
+     referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+    crossorigin="anonymous">
+    {% block title%}{% endblock%}
+    <style>
+      .side-header{
+        background-color: rgb(43, 40,197);
+        margin: 0px;
+        padding: 5px;
+        padding-block: 10px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .links{
+        margin-top: 40px;
+        margin-left: 0px;
+        padding: 0px;
+        padding-left: 10px;
+      }
+
+      .links li{
+        font-size: larger;
+        list-style: none;
+        margin-block: 10px;
+        padding: 10px;
+      }
+
+      .links li:hover{
+        background-color: #efefef;
+      }
+
+      a{
+        text-decoration: none;
+        color: black;
+      }
+
+      .dropdown-menu li{
+        font-size: larger;
+        list-style: none;
+      }
+
+      .navigation-bar{
+        background-color: rgb(43, 40,197);
+        margin: 0px;
+        padding: 5px;
+        padding-block: 10px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        height: 70px;
+      }
+
+      .title{
+        font-size: larger;
+      }
+      .profile{
+        font-size: 15px;
+        padding-inline: 5px;
+      }
+
+      .email{
+        font-size: 12px;
+      }
+      
+      .profile-dropdown li{
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+      }
+
+      .main{
+        background-color: #efefef;
+        height: 85vh;
+        overflow-y: auto;
+        box-shadow: inset 0px 0px 8px #888888;
+      }
+      .content{
+        background-color: #efefef;
+        margin: 30px;
+      }
+      .footer{
+        background-color: white;
+        color: rgb(167, 167, 167);
+        text-align: center;
+      }
+    </style>
+    {% block head%}{% endblock%}
+</head>
+<body>
+  <div class="container-fluid" style=" height:100vh;">
+    <div style="height: 100vh;" class="row">
+      <!--Sidebar-->
+      <div class="col-3 d-none d-lg-inline " style="background-color: white; padding: 0px;">
+        <div class="side-header">
+          <div>
+            <span><img src="{{url_for('static',filename='image/logo.png')}}" width="50px" height="50px" alt="logo"></span> 
+            Mt. Horeb College
+          </div>
+        </div> 
+        <ul class="links">
+          <li><a href="{{url_for('views.dashboard')}}"><i class="fa-regular fa-clipboard"></i> Dashboard</a></li>
+          <li style="display: flex; justify-content: space-between;">
+            <span><i class="fa-solid fa-graduation-cap"></i> Course</span>
+                 <button type="button" class="btn  dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                   <span class="visually-hidden">Toggle Dropdown</span>
+                 </button>
+                 <ul class="dropdown-menu dropdown-menu-end">
+                   <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.add_course')}}">Add Course</a></li>
+                   <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.view_course')}}">View Courses</a></li>
+                 </ul>
+         </li>
+
+          <li style="display: flex; justify-content: space-between;">
+           <span><i class="fa-solid fa-graduation-cap"></i> Student</span>
+                <button type="button" class="btn  dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.student_info')}}">Add Student</a></li>
+                  <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.promote')}}">Promote Student</a></li>
+                </ul>
+        </li>
+          <li><a href="{{url_for('auth.sign_up')}}"><i class="fa-solid fa-users"></i>  Register Users</a></li>
+          <br>
+          <hr>
+          <li><a href="{{url_for('views.account')}}"><i class="fa-regular fa-circle-user"></i>  Account</a></li>
+          <li><a href="{{url_for('auth.logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+      </div>
+      <!--Body-->
+      <div class="col-lg-9 col" style="padding: 0px; overflow:visible;">
+        <!--Navbar-->
+        <nav class="navigation-bar">
+          <div  class="container-fluid">
+            <div class="row">
+              <div class="d-lg-none col-1 ">
+                <button style="position: relative; top: 5px;" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                  <i class="fa-solid fa-bars fa-lg" style="color: #ffffff;"></i>
+                </button>
+                
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                  <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                      <div>
+                        <span><img src="{{url_for('static',filename='image/logo.png')}}" width="50px" height="50px" alt="logo"></span> 
+                        Mt. Horeb College
+                      </div>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <ul class="links">
+                      <li><a href="{{url_for('views.dashboard')}}"><i class="fa-regular fa-clipboard"></i> Dashboard</a></li>
+                      <li style="display: flex; justify-content: space-between;">
+                        <span><i class="fa-solid fa-graduation-cap"></i> Course</span>
+                             <button type="button" class="btn  dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                               <span class="visually-hidden">Toggle Dropdown</span>
+                             </button>
+                             <ul class="dropdown-menu dropdown-menu-end">
+                               <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.add_course')}}">Add Course</a></li>
+                               <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.view_course')}}">View Courses</a></li>
+                             </ul>
+                     </li>
+                      
+                      <li style="display: flex; justify-content: space-between;">
+                       <span><i class="fa-solid fa-graduation-cap"></i> Student</span>
+                            <button type="button" class="btn  dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                              <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.student_info')}}">Add Student</a></li>
+                              <li style="padding: 0px; margin-block: 0px;"><a class="dropdown-item" href="{{url_for('views.promote')}}">Promote Student</a></li>
+                            </ul>
+                    </li>
+                      <li><a href="{{url_for('auth.sign_up')}}"><i class="fa-solid fa-users"></i>  Register Users</a></li>
+                      <br>
+                      <hr>
+                      <li><a href="{{url_for('views.account')}}"><i class="fa-regular fa-circle-user"></i>  Account</a></li>
+                      <li><a href="{{url_for('auth.logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: center;" class="d-lg-none col-9">
+                <div style="position: relative; top: 5px;" class="title">
+                  Mt. Horeb College
+                </div>
+              </div>
+              <div style="display: flex; justify-content: center;" class="col-2 col-lg pe-">
+                <div class="d-lg-none">
+                  <button style="background: none; border: 0px; margin-inline: 30px;" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                    <div style="overflow: hidden; width: 50px; height: 50px; border-radius: 50px;">
+                      <img src="{{url_for('static',filename='image/profile.jpg')}}"width=50px height="50px" alt="profile">
+                    </div>
+                  </button>
+                  <ul class="profile-dropdown dropdown-menu">
+                      <li><img src="{{url_for('static',filename='image/profile.jpg')}}" width=100px height="100px" alt="profile"></li>
+                      <li>{{user.name}}</li>
+                      <li><small>{{user.email}}</small></li>
+                  </ul>
+                  </div>
+                <div class="d-none d-lg-inline" style="overflow: hidden; width: 50px; height: 50px; border-radius: 50px; position: relative; left: 40%;">
+                  <img src="{{url_for('static',filename='image/profile.jpg')}}"width=50px height="50px" alt="img">
+              </div>
+                <div style="position: relative; left: 40%; padding-right: 30px;" class="profile d-none d-lg-inline">
+                  {{user.name}} 
+                  <br>
+                 <small class="email">{{user.email}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="main">
+          {% with messages=get_flashed_messages(with_categories=True)%}
+            {% if messages%}
+              {% for category,message in messages%}
+                {% if category=="error"%}
+                  <div style="top:10px;" class="alert alert-danger alter-dismissible fade show" role="alert">
+                    {{message}}
+                   <button style="position: relative; float: right;" type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+                  </div>
+                  {% else%}
+                  <div style="top:10px;" class="alert alert-success alter-dismissible fade show" role="alert">
+                    {{message}}
+                    <button style="position: relative; float: right;" type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+                  </div>
+                {% endif%}
+              {% endfor%}
+            {% endif%}
+         {% endwith%}
+          <div class="content">
+            {% block content%}{% endblock%}
+          </div>
+        </div>
+
+      </div>
+      <div class="footer">
+        <small>© Kakwa Tech Productions       Contact: 0201754456</small>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+  crossorigin="anonymous"></script>
+</body>
+</html>

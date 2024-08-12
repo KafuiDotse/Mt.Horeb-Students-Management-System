@@ -1,0 +1,102 @@
+{% extends 'admin/base.html'%}
+{% block title%} <title>Dashboard</title> {% endblock%}
+
+{% block head%}
+<style>
+    .form-control{
+      border-radius: 0px;
+    }
+    .form-control:focus{
+      box-shadow: none;
+      border: 1px solid rgb(227, 226, 226);;
+    }
+    
+    .aspect{
+      border: 0px;
+      background-color: rgb(227, 226, 226);
+    }
+    .aspect:focus{
+      outline: none;
+    }
+    .searchbar{
+      width: 350px;
+    }
+  </style>
+{% endblock%}
+{% block content%}
+<div style="display: flex; justify-content: space-between;">
+    <span>
+        <h1 style="text-align: left;">Dashboard</h1> 
+    </span> 
+    <form style="display: inline;" action="/search" method="POST">
+        <div style="margin-top: 20px; border-radius: 30px;"  class="container  searchbar">
+          <div style="border-radius: 30px; overflow: hidden;" class="row">
+            <div style="padding: 0px;" class="col-4">
+              <div style="background-color: rgb(227, 226, 226); margin: 0px; height: 100%; display: flex; justify-content: center;">
+                <span class="m-2">
+                  <select class="aspect" name="aspect" id="">
+                    <option value="all">All</option>
+                    <option value="firstname">Firstname</option>
+                    <option value="lastname">Lastname</option>
+                    <option value="std_id">Student ID</option>
+                    <option value="current_track">Track</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+      
+            <div class="col p-0" >
+              <input class="m-0 w-100 h-100 form-control " type="text" name="search" placeholder="search...">
+            </div>
+      
+            <div style="padding: 0px;" class="col-2">
+              <div style="background-color: rgb(227, 226, 226); margin: 0px; height: 100%; display: flex; justify-content: center;">
+                <span class="m-2 search-ico">
+                  <button style="background-color: rgba(0, 0, 139, 0); border: 0px;" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </span>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+       
+</div>
+<br>
+<div style="border-radius: 10px; box-shadow: 0px 0px 5px 0px #888888; padding: 20px; background-color: white;">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Track</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for student in students%}
+                <tr style=" padding: 20px;">
+                    <td style="padding-left: 20px;"><i class="fa-solid fa-user-graduate fa-xl"></i></td>
+                    <td>{{student.firstname}} {{student.lastname}}</td>
+                    <td>{{student.std_id}}</td>
+                    <td>{{student.current_track}}</td>
+                    <td>
+                        <div class="dropdown">
+                            <button style="background-color: rgba(240, 248, 255, 0); border: 0px; " class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis fa-xl" style="color: #050505;"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-lg-end">
+                              <li><a class="dropdown-item" href="/update/{{student.id}}">Update</a></li>
+                              <li><a class="dropdown-item" href="/student-transcript/{{student.id}}">Transcript</a></li>
+                              <li><a class="dropdown-item" href="/delete/{{student.id}}">Delete</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>  
+            {% endfor%}
+            
+        </tbody>
+</table>
+</div>
+    <a href="{{url_for('views.student_info')}}" style="position: fixed; right:40px; bottom: 80px ; background-color: rgb(228, 147, 25);border-radius: 10px;" ><button class="btn btn-lg" style="color: white;"><i class="fa-regular fa-plus" style="color: #ffffff;"></i> New Student</button></a>
+{% endblock%}

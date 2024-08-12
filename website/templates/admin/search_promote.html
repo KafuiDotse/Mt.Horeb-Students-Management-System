@@ -1,0 +1,85 @@
+{% extends 'admin/base.html'%}
+{% block title%} <title>Promote Students</title> {% endblock%}
+
+{% block head%}
+<style>
+    .form-control{
+      border-radius: 0px;
+    }
+    .form-control:focus{
+      box-shadow: none;
+      border: 1px solid rgb(227, 226, 226);;
+    }
+    
+    .aspect{
+      border: 0px;
+      background-color: rgb(227, 226, 226);
+    }
+    .aspect:focus{
+      outline: none;
+    }
+    .searchbar{
+      width: 350px;
+    }
+  </style>
+{% endblock%}
+{% block content%}
+<div style="display: flex; justify-content: space-between;">
+    <span>
+        <h1 style="text-align: left;">Promote Students</h1> 
+    </span> 
+    <form style="display: inline;" action="/search-promote" method="POST">
+        <div style="margin-top: 20px; border-radius: 30px;"  class="container  searchbar">
+          <div style="border-radius: 30px; overflow: hidden;" class="row">
+            <div style="padding: 0px;" class="col-4">
+              <div style="background-color: rgb(227, 226, 226); margin: 0px; height: 100%; display: flex; justify-content: center;">
+                <span class="m-2">
+                  <select class="aspect" name="aspect" id="">
+                    <option value="all">All</option>
+                    <option value="firstname">Firstname</option>
+                    <option value="lastname">Lastname</option>
+                    <option value="std_id">Student ID</option>
+                    <option value="current_track">Track</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+      
+            <div class="col p-0" >
+              <input class="m-0 w-100 h-100 form-control " type="text" name="search" placeholder="search...">
+            </div>
+      
+            <div style="padding: 0px;" class="col-2">
+              <div style="background-color: rgb(227, 226, 226); margin: 0px; height: 100%; display: flex; justify-content: center;">
+                <span class="m-2 search-ico">
+                  <button style="background-color: rgba(0, 0, 139, 0); border: 0px;" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </span>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+       
+</div>
+<br>
+<div>
+    <form action="" method="POST">
+        <div style="position: fixed; right:40px; bottom: 80px ;">
+            <input type="submit" class="btn" style=" background-color: rgb(228, 147, 25); color: white;" value="Promote">
+        </div>
+    {% for student in students%}
+        <div style="box-shadow: 0px 0px 5px rgb(185, 185, 185);" class="card">
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input" name="check" type="checkbox" value="{{student.id}}" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{student.firstname}} {{student.lastname}}
+                    </label>
+                  </div>
+            </div>
+        </div>
+        <br>
+    {% endfor%}
+    </form>
+</div>
+{% endblock%}

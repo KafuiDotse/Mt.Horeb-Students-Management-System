@@ -1,0 +1,165 @@
+{% extends 'admin/base.html'%}
+{% block title%} <title>Student Transcript</title> {% endblock%}
+
+{% block content%}
+<div style="margin-block: 80px;">
+    <table class="table table-bordered">
+        <tbody>
+            <tr scope="row">
+                <th>Stundent ID</th>
+                <td colspan="3">{{student.std_id}}</td>
+            </tr>
+            <tr scope="row">
+                <th>Stundent Name</th>
+                <td colspan="3">{{student.lastname}} {{student.firstname}}</td>
+            </tr>
+            <tr scope="row">
+                <th>Gender</th>
+                <td>{{student.gender}}</td>
+                <th>Date of Birth</th>
+                <td>{{student.dob}}</td>
+            </tr>
+            <tr scope="row">
+                <th>Place of Birth</th>
+                <td>{{student.pob}}</td>
+                <th>Nationality</th>
+                <td>{{student.nationality}}</td>
+            </tr>
+            <tr scope="row">
+                <th>Admission Date</th>
+                <td colspan="3">{{student.admisision_date}}</td>
+            </tr scope="row">
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<h5 style="text-align: center;"><b>Student Transcript</b></h5>
+<br>
+<div>
+    {% if mark_100%}
+        <h5>Certificate Track- 1st Semister</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Course Title</th>
+                <th scope="col">Credit</th>
+                <th scope="col">Mark</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for mark in mark_100%}
+                    {% if mark.semister=="1st" %}
+                        <tr>
+                            <td>{{mark.course.name}}</td>
+                            <td>{{mark.course.credit}}</td>
+                            <td>{{mark.total}}</td>
+                        </tr>
+                    {% endif%}
+                {% endfor%}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="table-secondary">Weigthed Average:</th>
+                    <td class="table-secondary" colspan="2">{{avgs[0][0]}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        <br>
+        <br>
+        <h5>Certificate Track- 2nd Semister</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Course Title</th>
+                <th scope="col">Credit</th>
+                <th scope="col">Mark</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for mark in mark_100%}
+                    {% if mark.semister=="2nd" %}
+                        <tr>
+                            <td>{{mark.course.name}}</td>
+                            <td>{{mark.course.credit}}</td>
+                            <td>{{mark.total}}</td>
+                        </tr>
+                    {% endif%}
+                {% endfor%}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="table-secondary">Weigthed Average:</th>
+                    <td class="table-secondary" colspan="2">{{avgs[0][1]}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        {% endif%}
+        <br>
+        <br>
+        {% if mark_200%}
+        <h5>Diploma - 1st Semister</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Course Title</th>
+                <th scope="col">Credit</th>
+                <th scope="col">Mark</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for mark in mark_200%}
+                    {% if mark.semister=="1st" %}
+                        <tr>
+                            <td>{{mark.course.name}}</td>
+                            <td>{{mark.course.credit}}</td>
+                            <td>{{mark.total}}</td>
+                        </tr>
+                    {% endif%}
+                {% endfor%}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="table-secondary">Weigthed Average:</th>
+                    <td class="table-secondary" colspan="2">{{avgs[1][0]}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        <br>
+        <br>
+        <h5>Diploma Track- 2nd Semister</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Course Title</th>
+                <th scope="col">Credit</th>
+                <th scope="col">Mark</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for mark in mark_200%}
+                    {% if mark.semister=="2nd" %}
+                        <tr>
+                            <td>{{mark.course.name}}</td>
+                            <td>{{mark.course.credit}}</td>
+                            <td>{{mark.total}}</td>
+                        </tr>
+                    {% endif%}
+                {% endfor%}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="table-secondary">Weigthed Average:</th>
+                    <td class="table-secondary" colspan="2">{{avgs[1][1]}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        {% endif%}
+        <br>
+        <br>
+    </div>
+    <div style="padding-block: 50px;" class="d-grid gap-2">
+        <a href="/convert-to-pdf/{{student.id}}" class="btn btn-lg" style=" background-color: rgb(228, 147, 25); color: white;">Generate PDF</a>
+    </div>
+{% endblock%}

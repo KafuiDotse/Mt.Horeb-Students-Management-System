@@ -1,0 +1,25 @@
+{% extends 'admin/base.html'%}
+{% block title%} <title>Courses</title> {% endblock%}
+
+{% block content%}
+<h1 style="text-align: left;">Courses</h1>
+<div>
+    {% for course in courses%}
+    <div style="box-shadow: 0px 0px 5px rgb(185, 185, 185);" class="card">
+        <div class="card-body">
+            <i class="fa-solid fa-bookmark"></i>    {{course.name}}
+            <a href="/delete-course/{{course.id}}" style="margin-inline:4px ; border: 0px; background-color: rgba(240, 248, 255, 0); position: relative; float: right;">
+                <i class="fa-solid fa-trash" style="color: #c01b1b;"></i>
+            </a>
+            <a href="/update-course/{{course.id}}" style="margin-inline:4px ; border: 0px; background-color: rgba(240, 248, 255, 0); position: relative; float: right;">
+                <i class="fa-solid fa-pen-to-square" style="color: #2b8f24;"></i>
+            </a>
+        </div>
+      </div>
+      <br>
+    {% endfor%}
+    <a href="{{url_for('views.add_course')}}" style="position: fixed; right:40px; bottom: 80px ;" >
+        <button class="btn btn-lg" style=" background-color: rgb(228, 147, 25); color: white;"><i class="fa-regular fa-plus"></i> Add Course</button>
+    </a>
+</div>
+{% endblock%}

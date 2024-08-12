@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+    crossorigin="anonymous">
+    <title>Mt. Herob College</title>
+</head>
+<body class="container justify-content-center">
+  <div style="margin-block: 50px; box-shadow: 0px 0px 10px 0px rgb(151, 151, 151);" class="container align-items-center">
+    <div class="row" >
+      <div style="padding: 0px;" class="col-lg-4">
+        <img  src="{{url_for('static',filename='image/dev-benjamin-voIzq8LEdlo-unsplash (2).jpg')}}" width="100%" height="100%" alt="">
+      </div>
+      <div class="col-lg-8">
+        <div style="margin-block: 30%;" class="justify-content-center">
+          <div class="row justify-content-center">
+            <div class="col-10 justify-content-center ">
+              <h1>This is Mt. Herob College</h1>
+              <span>Nice to be here today again whit you.</span><br>
+              <span>Hope you have a nice day.</span><br>
+              <span>Happy seeing you.</span><br>
+              <a style="background-color: rgb(228, 147, 25); color: white;" href="{{url_for('auth.login')}}" class="btn mt-2">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+  crossorigin="anonymous"></script>
+</body>
+</html>

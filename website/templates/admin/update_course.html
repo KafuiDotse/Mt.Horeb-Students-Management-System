@@ -1,0 +1,29 @@
+{% extends 'admin/base.html'%}
+{% block title%} <title>Update Course</title> {% endblock%}
+
+{% block content%}
+<h1 style="text-align: left;">Update Course</h1>
+<br>
+<br>
+<div>
+    <div style="padding: 50px; box-shadow: 0px 0px 10px rgb(126, 126, 126); background-color: white;">
+        <form action="" method="POST">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"><h5>Course Name</h5></label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="course_name"  value="{{course.name}}" placeholder="Course">
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"><h5>Credit hours</h5></label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="credit" value="{{course.credit}}" placeholder="Credit Hours">
+            </div>
+            <br>
+            <div style="display: flex; justify-content: center;">
+                <input type="submit" value="Update" class="btn btn-lg" style=" background-color: rgb(228, 147, 25); color: white;">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock%}

@@ -1,0 +1,26 @@
+{% extends 'teachers/tch_base.html'%}
+{% block title%} <title>Semister Level</title> {% endblock%}
+
+{% block content%}
+<h1 style="text-align: center; font-size: 4em;">Students are in...?</h1>
+<div style="display: flex; justify-content: center;">
+    <div style="border-radius: 10px; padding: 20px; margin-top:50px ; box-shadow: 0px 0px 10px 0px rgb(126, 126, 126); width: 300px; background-color: white;">
+        <form action="" method="POST">
+            <select class="form-select" aria-label="Default select example" name="track" id="">
+                <option value="certificate_track">Certificate Track</option>
+                <option value="diploma_track">Diploma Track</option>
+            </select>
+            <br>
+            <br>
+            <select class="form-select" aria-label="Default select example" name="semister" id="">
+                <option value="1st">1st Semister</option>
+                <option value="2nd">2nd Semister</option>
+            </select>
+            <br>
+            <div style="position: relative; float: right;">
+                <input class="btn" type="submit" style="background-color: rgb(228, 147, 25); color: white;" value="Next">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}

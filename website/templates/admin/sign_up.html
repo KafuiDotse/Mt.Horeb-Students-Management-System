@@ -1,0 +1,62 @@
+{% extends 'admin/base.html'%}
+{% block title%} <title>Register Users</title> {% endblock%}
+
+{% block content%}
+<h1 style="text-align: center;">Register Users</h1>
+<div style="border-radius: 10px; padding: 15px; margin:50px; box-shadow: 0px 0px 10px 0px rgb(126, 126, 126); background-color: white;">
+    <form action="" method="POST">
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input  type="text" class="form-control" name="firstname" id="floatingInput" placeholder="First Name">
+                    <label for="floatingInput">First Name</label>
+                </div>            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="lastname" id="floatingPassword" placeholder="Last Name">
+                    <label for="floatingPassword">Lastname</label>
+                </div>            
+            </div>
+        </div>
+        
+        <br>
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="floatingPassword" placeholder="Emai Address">
+            <label for="floatingPassword">Email Address</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <select class="form-select" name="role" id="floatingSelect" aria-label="Floating label select example">
+              <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+            </select>
+            <label for="floatingSelect">Role</label>
+        </div>
+          <br>
+        <div class="form-floating">
+            <select class="form-select" name="course" id="floatingSelect" aria-label="Floating label select example">
+                <option value="none">None</option>
+                {% for course in courses%}
+                    <option value="{{course.name}}">{{course.name}}</option>
+                {% endfor%}
+            </select>
+            <label for="floatingSelect">Course</label>
+        </div>
+          <br>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="confirm_password" id="floatingPassword" placeholder="Confirm Password">
+            <label for="floatingPassword">Confirm Password</label>
+        </div>
+        <br>
+        <div style="display: flex; justify-content: center;">
+            <input type="submit" value="Sign Up" class="btn" style=" background-color: rgb(228, 147, 25); color: white;">
+        </div>
+    </form>
+</div> 
+
+{% endblock%}
